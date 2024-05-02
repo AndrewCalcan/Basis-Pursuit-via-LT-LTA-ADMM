@@ -53,8 +53,8 @@ AAt = A*A';
 P = eye(n) - A' * (AAt \ A);
 q = A' * (AAt \ b);
 
-FullRach = zeros(n,MAX_ITER); %%%%%%%%%%%%%%%%%%%%%%%%
-i = 1; %%%%%%%%%%%%%%%%%%%%%%%%
+FullRach = zeros(n,MAX_ITER); 
+i = 1; 
 for k = 1:MAX_ITER
     % x-update
     x = P*(z - u) + q;
@@ -73,8 +73,8 @@ for k = 1:MAX_ITER
     Rach = u + rho*z; 
     
     
-      FullRach(:,i) = Rach; %%%%%%%%%%%%%%%%%%%%%%%%
-      i = i+1; %%%%%%%%%%%%%%%%%%%%%%%%
+      FullRach(:,i) = Rach; 
+      i = i+1; 
    
 
     % diagnostics, reporting, termination checks
@@ -104,8 +104,6 @@ for k = 1:MAX_ITER
     end
 end
 
-%%Taking out the 0 columns
-FullRach(:,all(FullRach==0)) = []; %%%%%%%%%%%%%%%%%%%%%%%%
 
 if ~QUIET
     toc(t_start);
