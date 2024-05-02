@@ -47,12 +47,6 @@ IDCTMRem = cos((piCoeff*pi)/(2*DomSize));
 %Creating the full IDCTM by concating IDCTMC1 (column 1) and IDCTMRem:
 FullIDCTM = cat(2,IDCTMC1,IDCTMRem);
 FullIDCTM = (sqrt(2/DomSize))*FullIDCTM;
- %use dctmx function, then transpose
-%FullIDCTM = transpose(dctmtx(DomSize));
-
-%pleasebetheidentity = FullIDCTM * transpose(FullIDCTM);
-
-%disp(IDCTMC1);
 
 NumFig = 1;
 
