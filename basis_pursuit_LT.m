@@ -45,7 +45,7 @@ y1 = zeros(n,1);
 y2 = zeros(n,1);
 y3 = zeros(n,1);
 
-LTRach = zeros(n,1); %%%%%%%%%%%%%%%%%%%%%%%%
+LTRach = zeros(n,1); 
 
 if ~QUIET
     fprintf('%3s\t%10s\t%10s\t%10s\t%10s\t%10s\n', 'iter', ...
@@ -69,8 +69,7 @@ FullyLT = zeros(30,100);
 LTAcceptCounter = 0; %the number of LT update candidates accepted
 
 zREG = z;
-% LTFullRach = zeros(n, MAX_ITER); %%%%%%%%%%%%%%%%%%%%%%%%
-% i = 1; %%%%%%%%%%%%%%%%%%%%%%%%
+
 l = 1;
 for k = 1:MAX_ITER
     
@@ -80,9 +79,7 @@ for k = 1:MAX_ITER
         % x-update
        xREG = P*(z - uREG) + q;
         xLT = P*(zLT - uLT) + q;
-%         if norm(xLT - zLT,2) < norm(xREG - zREG,2)
        if objective(A, b, xREG) > objective(A,b,xLT)
-%        if 2 > 1
             x = xLT;
             u = uLT;
             j=0; %when we accept the centering step, we set the counter back to zero
@@ -124,17 +121,7 @@ for k = 1:MAX_ITER
         %I then set shadow u to be prox_cd2 of the dual governing sequence
 		yLT=circumcenter(y1,2*y2-y1,piT(y1,y2,y3));
 
-%         FullyLT(:,l) = y1;
-%         l = l+1;
-%         FullyLT(:,l) = y2;
-%         l = l+1;
-%         FullyLT(:,l) = y3;
-%         l = l+1;
-%         FullyLT(:,l) = yLT;
-%         l = l+1;
-% 
-%         LTAcceptCounter = LTAcceptCounter + 1;
-        
+       
         uLT = proj_box(yLT,1); 
         zLT = yLT-uLT;
     else
@@ -144,15 +131,6 @@ for k = 1:MAX_ITER
     uREG = u;
     zREG = z;
         
-%     threshold = 0.1*max(z);
-%     for h = 1:4410
-%         z(h,:) = shrinkage(z(h,:),threshold);
-%     end    
-    
-
-    
-    
-
     % diagnostics, reporting, termination checks
 	
 	    
@@ -185,11 +163,6 @@ for k = 1:MAX_ITER
          break;
     end
 end
-
-
-
-% disp(LTAcceptCounter);
-
 
 
 
