@@ -172,17 +172,11 @@ for j = 1:(num_experiments*(1/ProblemTime)) %while num_experiments > 0 %while th
     [VLT_performance] = performance_profile(statisticsVLT.perf_prof,0.0001, tau_max);
     tau= 1:0.0001:tau_max;
 
-    %Combining problems to create single signals
-%     bLTFull = [bLT;bLT];
-%     bADMMFull = [bADMM;bADMM];
-
-    
 
     ProblemStart=ProblemStart+ProblemSize;
 
     num_experiments = num_experiments-ProblemTime;
 
-    %g=g+1;
     h = h+1;
 
     k=k+1;
@@ -194,13 +188,7 @@ end
 bLTFull = reshape(bLT,1,[])';
 bADMMFull = reshape(bADMM,1,[])';
 
-% disp(size(bLTFull));
-% disp(size(bADMMFull));
-% 
-% disp(size(A));
-
 figure(1)
-%subplot(2,2,4);
 stairs(tau,LT_performance.val,'DisplayName','LT','LineWidth',2); %.val
 hold on
 stairs(tau,VLT_performance.val,'DisplayName','LT V','LineWidth',2);
@@ -208,40 +196,28 @@ stairs(tau,ADMM_performance.val, 'DisplayName','Vanilla ADMM','LineWidth',2); %.
 lgd2 = legend('Location','southeast');
 fontsize(lgd2,34,'points');
 ylim([0 1.1]);
-% xlim([1 2]);
-%yticks([0 1]);
+
 set(gca,'YTick',[0 1],'FontSize',18);
 set(gca, 'XTick',[1 1.2 1.4 1.6 1.8 2], 'FontSize',36);
 
 figure(2)
-%subplot(2,2,1);
 plot(GraphDomain,bEntire);
 title('Original Signal');
 xlabel('Time (s)');
 ylabel('Amplitude');
 
 figure(3)
-%subplot(2,2,2);
 plot(GraphDomain,bLTFull);
 title('Signal Reconstructed Using LT Variation');
 xlabel('Time (s)');
 ylabel('Amplitude');
 
 figure(4)
-%subplot(2,2,3);
 plot(GraphDomain,bADMMFull);
 title('Signal Reconstructed Using ADMM');
 xlabel('Time (s)');
 ylabel('Amplitude');
 
-
-% K = length(history.objval);
-% LTK = length(LThistory.objval); 
-% 
-% P3= history.Rach_diff;
-
-% sound(y,SamPerSec);
-% disp(size(y));
 
 
 %Playing Sound
