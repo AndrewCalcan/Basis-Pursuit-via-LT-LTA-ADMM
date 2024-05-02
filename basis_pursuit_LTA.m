@@ -151,14 +151,6 @@ for k = 1:MAX_ITER
     uREG = u;
     zREG = z;
         
-%     threshold = 0.1*max(z);
-%     for h = 1:4410
-%         z(h,:) = shrinkage(z(h,:),threshold);
-%     end    
-    
-
-    
-    
 
     % diagnostics, reporting, termination checks
 	
