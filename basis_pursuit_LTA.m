@@ -45,7 +45,7 @@ y1 = zeros(n,1);
 y2 = zeros(n,1);
 y3 = zeros(n,1);
 
-LTRach = zeros(n,1); %%%%%%%%%%%%%%%%%%%%%%%%
+LTRach = zeros(n,1);
 
 if ~QUIET
     fprintf('%3s\t%10s\t%10s\t%10s\t%10s\t%10s\n', 'iter', ...
@@ -70,8 +70,8 @@ CenteringCounter = 0;
 % JustyLT = zeros(4410,5000);
 
 zREG = z;
-LTFullRach = zeros(n, MAX_ITER); %%%%%%%%%%%%%%%%%%%%%%%%
-i = 1; %%%%%%%%%%%%%%%%%%%%%%%%
+LTFullRach = zeros(n, MAX_ITER); 
+i = 1; 
 l = 1;
 o = 1;
 for k = 1:MAX_ITER
@@ -82,19 +82,11 @@ for k = 1:MAX_ITER
         % x-update
        xREG = P*(z - uREG) + q;
         xLT = P*(zLT - uLT) + q;
-%        if norm(xLT - zLT,2) < norm(xREG - zREG,2)
-%       if objective(A, b, xREG) > objective(A,b,xLT)
         if 2 > 1
             x = xLT;
             u = uLT;
             j=0; %when we accept the centering step, we set the counter back to zero
             CenteringCounter = CenteringCounter + 1; %records the number of LT updates accepted
-
-%             FullyLT(:,l) = yLT;
-%             l = l+1;
-% 
-%             JustyLT(:,o) = yLT;
-%             o=o+1;
 
             
        else %we reject the centered update, in which case we must update indices and leave counter unchanged
@@ -121,16 +113,10 @@ for k = 1:MAX_ITER
     %y_{k-1} update
     if j == 0
         y1 = u+rho*z;
-%         FullyLT(:,l) = y1;
-%         l = l+1;
     elseif j == 1
         y2 = u+rho*z;
-%         FullyLT(:,l) = y2;
-%         l = l+1;
     else %then j == 2 and so
         y3 = u+rho*z;
-%         FullyLT(:,l) = y3;
-%         l = l+1;
     end
 
     w1 = y2 - y1; %computing w1
